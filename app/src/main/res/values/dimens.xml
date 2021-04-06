@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="board_divider_size">2dp</dimen>
+    <dimen name="board_dimen_size">300dp</dimen>
+</resources>

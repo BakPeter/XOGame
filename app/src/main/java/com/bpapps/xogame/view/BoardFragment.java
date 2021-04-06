@@ -9,10 +9,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bpapps.xogame.R;
@@ -22,13 +20,12 @@ import com.bpapps.xogame.viewmodel.GameViewModelFactory;
 
 import java.util.ArrayList;
 
-public class BoardFragment extends Fragment {
+public class BoardFragment extends Fragment implements View.OnClickListener {
     private GameViewModel viewModel;
 
-    private AppCompatEditText etMockDataToAdd;
-    private AppCompatButton btnMockData;
-    private AppCompatTextView tvResultShower;
-
+    private ArrayList<ArrayList<AppCompatTextView>> board = new ArrayList<>(3);
+    private AppCompatTextView tvCurrPlayer;
+    private AppCompatButton btnStartNewGame;
 
     public BoardFragment() {
         // Required empty public constructor
@@ -57,33 +54,57 @@ public class BoardFragment extends Fragment {
         GameViewModelFactory factory = InjectorUtils.provideGameViewModelFactory();
         viewModel = new ViewModelProvider(this, factory).get(GameViewModel.class);
 
-        etMockDataToAdd = view.findViewById(R.id.etMockDataToAdd);
-        tvResultShower = view.findViewById(R.id.tvResultShower);
+        initBoard(view);
 
-        btnMockData = view.findViewById(R.id.btnMockData);
-        btnMockData.setOnClickListener(new View.OnClickListener() {
+        tvCurrPlayer = view.findViewById(R.id.tvCurrPlayer);
+
+        btnStartNewGame = view.findViewById(R.id.btnStartNewGame);
+        btnStartNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mockDataToAdd = etMockDataToAdd.getText().toString();
-                Toast.makeText(requireContext(), mockDataToAdd, Toast.LENGTH_SHORT).show();
-
-                viewModel.addMockData(mockDataToAdd);
-
+                Toast.makeText(requireContext(), "START NEW GAME", Toast.LENGTH_SHORT).show();
+                tvCurrPlayer.setText("Curr Player X");
             }
         });
+    }
 
-        viewModel.getMockData().observe(getViewLifecycleOwner(), new Observer<ArrayList<String>>() {
-            @Override
-            public void onChanged(ArrayList<String> strings) {
-                StringBuilder mockData = new StringBuilder();
+    private void initBoard(@NonNull View view) {
+        ArrayList<AppCompatTextView> row = new ArrayList<>(3);
+        row.add(view.findViewById(R.id.tvSquare00));
+        row.add(view.findViewById(R.id.tvSquare01));
+        row.add(view.findViewById(R.id.tvSquare02));
+        board.add(row);
 
-                strings.forEach(s ->
-                {
-                    mockData.append(s).append("\n\n");
-                });
+        row = new ArrayList<>(3);
+        row.add(view.findViewById(R.id.tvSquare10));
+        row.add(view.findViewById(R.id.tvSquare11));
+        row.add(view.findViewById(R.id.tvSquare12));
+        board.add(row);
 
-                tvResultShower.setText(mockData.toString());
+        row = new ArrayList<>(3);
+        row.add(view.findViewById(R.id.tvSquare20));
+        row.add(view.findViewById(R.id.tvSquare21));
+        row.add(view.findViewById(R.id.tvSquare22));
+        board.add(row);
+
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board.get(i).size(); j++) {
+                board.get(i).get(j).setOnClickListener(this);
             }
-        });
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int i, j;
+        for (i = 0; i < board.size(); i++) {
+            for (j = 0; j < board.get(i).size(); j++) {
+                if (v.getId() == board.get(i).get(j).getId()) {
+                    String str = "[" + i + "][" + j + "]";
+//                    Toast.makeText(requireContext(), str, Toast.LENGTH_SHORT).show();
+                    tvCurrPlayer.setText("Curr Player : " + str);
+                }
+            }
+        }
     }
 }

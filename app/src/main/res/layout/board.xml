@@ -1,19 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BOARD"
-        android:textStyle="bold|italic"
 
+    <!--Dividers-->
+    <View
+        android:id="@+id/viewVerticalDiv1"
+        android:layout_width="@dimen/board_divider_size"
+        android:layout_height="match_parent"
+        android:background="@color/board_divider_color"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/viewVerticalDiv2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewVerticalDiv2"
+        android:layout_width="@dimen/board_divider_size"
+        android:layout_height="match_parent"
+        android:background="@color/board_divider_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/viewVerticalDiv1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewHorizontalDiv1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/board_divider_size"
+        android:background="@color/board_divider_color"
+        app:layout_constraintBottom_toTopOf="@+id/viewHorizontalDiv2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <View
+        android:id="@+id/viewHorizontalDiv2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/board_divider_size"
+        android:background="@color/board_divider_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewHorizontalDiv1" />
+
+
+    <!--Squares-->
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSquare00"
+        style="@style/squareStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#90B5D3"
+        android:text="00"
+        app:layout_constraintBottom_toTopOf="@id/viewHorizontalDiv1"
+        app:layout_constraintEnd_toStartOf="@id/viewVerticalDiv1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSquare01"
+        style="@style/squareStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#90B5D3"
+        android:text="01"
+        app:layout_constraintBottom_toTopOf="@id/viewHorizontalDiv1"
+        app:layout_constraintEnd_toStartOf="@id/viewVerticalDiv2"
+        app:layout_constraintStart_toEndOf="@id/viewVerticalDiv1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSquare02"
+        style="@style/squareStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#90B5D3"
+        android:text="02"
+        app:layout_constraintBottom_toTopOf="@id/viewHorizontalDiv1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/viewVerticalDiv2"
+        app:layout_constraintTop_toTopOf="parent" />
+<!---->
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSquare10"
+        style="@style/squareStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#90B5D3"
+        android:text="10"
+        app:layout_constraintBottom_toTopOf="@id/viewHorizontalDiv2"
+        app:layout_constraintEnd_toStartOf="@id/viewVerticalDiv1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewHorizontalDiv1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSquare11"
+        style="@style/squareStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#90B5D3"
+        android:text="11"
+        app:layout_constraintBottom_toTopOf="@id/viewHorizontalDiv2"
+        app:layout_constraintEnd_toStartOf="@id/viewVerticalDiv2"
+        app:layout_constraintStart_toEndOf="@id/viewVerticalDiv1"
+        app:layout_constraintTop_toBottomOf="@id/viewHorizontalDiv1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSquare12"
+        style="@style/squareStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#90B5D3"
+        android:text="12"
+        app:layout_constraintBottom_toTopOf="@id/viewHorizontalDiv2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/viewVerticalDiv2"
+        app:layout_constraintTop_toBottomOf="@id/viewHorizontalDiv1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSquare20"
+        style="@style/squareStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#90B5D3"
+        android:text="20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/viewVerticalDiv1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewHorizontalDiv2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSquare21"
+        style="@style/squareStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#90B5D3"
+        android:text="21"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/viewVerticalDiv2"
+        app:layout_constraintStart_toEndOf="@id/viewVerticalDiv1"
+        app:layout_constraintTop_toBottomOf="@id/viewHorizontalDiv2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSquare22"
+        style="@style/squareStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#90B5D3"
+        android:text="22"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/viewVerticalDiv2"
+        app:layout_constraintTop_toBottomOf="@id/viewHorizontalDiv2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
